@@ -1,0 +1,52 @@
+.gradle/*
+
+#Android generated
+bin
+build
+gen
+lint.xml
+
+*.apk
+
+# Lint
+config/
+
+#Eclipse
+.project
+.classpath
+.settings
+.checkstyle
+
+#IntelliJ IDEA
+.idea/*
+*.iml
+*.ipr
+*.iws
+classes
+gen-external-apklibs
+out/
+
+#Maven
+target
+release.properties
+pom.xml.*
+
+#Ant
+build.xml
+ant.properties
+local.properties
+proguard.cfg
+proguard-project.txt
+
+#Other
+.DS_Store
+tmp
+*.orig
+*.rdb
+MockServer/npm-debug.log
+*jacoco.exec
+mobile-cd/
+
+#Locked dependencies
+sdk/dependencies.lock
+testapp/dependencies.lock

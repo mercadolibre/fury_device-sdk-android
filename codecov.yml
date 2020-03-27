@@ -1,0 +1,32 @@
+coverage:
+  status:
+    project:
+      default: off
+      minimum:
+        target: 30%
+      decrement:
+        target: auto
+        threshold: 0.5%
+        if_not_found: success
+      common:
+        target: 30%
+        flags: common
+      core:
+        target: 30%
+        flags: core
+    patch:
+      default: off
+      pr_coverage:
+        target: 0%
+flags:
+  # filter the folder(s) you wish to measure by that flag
+  core:
+    paths:
+      - core/src/main/java/com/mercadolibre/android/device/sdk/
+comment:
+  layout: "diff, flags"
+  behavior: default
+  require_changes: false  # if true: only post the comment if coverage changes
+  require_base: no        # [yes :: must have a base report to post]
+  require_head: no       # [yes :: must have a head report to post]
+  branches: null
