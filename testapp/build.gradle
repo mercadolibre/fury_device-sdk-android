@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+apply from: rootProject.file('jacoco.gradle')
+
+android {
+    compileSdkVersion 28
+
+    lintOptions{
+        // TODO: Delete this once play services is updated. Now we need it because play services brings support library 26
+        disable 'GradleCompatible'
+    }
+
+
+    defaultConfig {
+        applicationId "com.example.testapp"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+}
+
+dependencies {
+
+    implementation "com.android.support:appcompat-v7:$support"
+    implementation "com.android.support:design:$support"
+    implementation project(":sdk")
+}

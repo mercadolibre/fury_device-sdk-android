@@ -1,0 +1,63 @@
+apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.android.library'
+apply plugin: 'com.monits.staticCodeAnalysis'
+
+apply from: rootProject.file('jacoco.gradle')
+apply from: rootProject.file('publish.gradle')
+
+android {
+    compileSdkVersion maxApiLevel.toInteger()
+    buildToolsVersion androidBuildTools
+
+    defaultConfig {
+        minSdkVersion minApiLevel
+        targetSdkVersion maxApiLevel
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    lintOptions {
+        warning 'GradleCompatible'
+        disable 'NewerVersionAvailable', 'HardwareIds'
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
+
+    resourcePrefix 'device_sdk_'
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            buildConfigField 'String', 'DEVICE_SDK_VERSION', "\"${libraryVersion}\""
+        }
+        release {
+            initWith(buildTypes.debug)
+        }
+    }
+    compileOptions {
+        targetCompatibility = 1.8
+        sourceCompatibility = 1.8
+    }
+}
+
+dependencies {
+    api "com.google.code.gson:gson:$gson"
+    api "com.android.support:support-annotations:$support"
+    api "com.google.android.gms:play-services-base:$psBase"
+    api "com.google.android.gms:play-services-ads:$psAds"
+
+    testImplementation "junit:junit:$junit"
+    testImplementation "org.mockito:mockito-core:$mockito"
+    testImplementation "org.mockito:mockito-inline:$mockito"
+    testImplementation "org.robolectric:robolectric:$robolectric"
+}
+
+staticCodeAnalysis {
+    ignoreErrors = false
+    androidLint = false
+    checkstyle = false
+    findbugs = false
+    cpd = false
+}
