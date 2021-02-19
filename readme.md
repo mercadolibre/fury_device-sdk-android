@@ -33,7 +33,7 @@ Only **3** steps needed to obtain the device fingerprint information:
 
 1) Import into your project
 ```java
-import com.mercadolibre.android.devices.sdk.DeviceSDK;
+import com.mercadolibre.android.device.sdk.DeviceSDK;
 ```
 
 2) Initialize the sdk in your `MainApplication` doing the following:
@@ -58,4 +58,4 @@ Device Team, device@mercadolibre.com
 
 ## License
 
-Mercado Pago's Devices SDK is available under the MIT license. See the LICENSE file for more info.
+Mercado Pago's Device SDK is available under the MIT license. See the LICENSE file for more info.
