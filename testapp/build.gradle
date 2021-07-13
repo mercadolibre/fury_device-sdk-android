@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 apply from: rootProject.file('jacoco.gradle')
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     lintOptions{
         // TODO: Delete this once play services is updated. Now we need it because play services brings support library 26
@@ -13,8 +13,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.testapp"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion 19
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
