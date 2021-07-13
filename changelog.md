@@ -1,3 +1,7 @@
+# v2.0.0
+- Se migra a api 29 de android
+- Se corrige error con widevine_id
+
 # v1.0.8
 ## Version integración
 - Se reemplazan logs de errors por logs de información
