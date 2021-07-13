@@ -6,7 +6,7 @@
 default: &defaultJob
   # The docker image all jobs that inherit from us will have (Which should be all of them)
   docker:
-    - image: circleci/android:api-28
+    - image: circleci/android@sha256:42812778b27d4b30a2e1d0e0c61de373f0d2bed7a53d5df03199f2115259cee6
 
 ##
 # We define a job for building. This job will be in charge of running:
@@ -63,7 +63,7 @@ deploy-release-job: &deployReleaseJob
     - add_ssh_keys
     - run:
         name: Run Deploy
-        command: ./gradlew assemble bintrayUpload --no-build-cache --rerun-tasks
+        command: ./gradlew assembleRelease publish --no-build-cache --rerun-tasks -x testapp:assembleRelease
 ##
 # We define our default workflow
 # This workflow will be used by our default builds
