@@ -43,7 +43,7 @@ afterEvaluate {
                 groupId = groupIdPublication
                 artifactId = artifactIdPublication
                 version = publishVersion
-                artifact("$buildDir/outputs/aar/${artifactIdPublication}-release.aar")
+                artifact("$buildDir/outputs/aar/${artifactIdPublication}-${publishVersion}.aar")
                 artifact(sourceJar)
                 artifact(javadocJar)
                 pom.withXml {
