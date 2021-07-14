@@ -1,4 +1,3 @@
-apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
 apply plugin: 'com.monits.staticCodeAnalysis'
 
@@ -36,6 +35,7 @@ android {
             initWith(buildTypes.debug)
         }
     }
+
     compileOptions {
         targetCompatibility = 1.8
         sourceCompatibility = 1.8
@@ -60,4 +60,5 @@ staticCodeAnalysis {
     checkstyle = false
     findbugs = false
     cpd = false
+    pmd = false
 }

@@ -1,11 +1,3 @@
-allprojects {
-    repositories {
-        jcenter()
-        google()
-        mavenCentral()
-    }
-}
-
 buildscript {
     repositories {
         jcenter()
@@ -15,7 +7,6 @@ buildscript {
 
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleBuildTools"
-        classpath "com.novoda:bintray-release:$bintrayRelease"
         classpath "com.monits:static-code-analysis-plugin:$staticAnalysis"
     }
 }
