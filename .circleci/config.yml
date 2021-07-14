@@ -22,9 +22,11 @@ build-job: &buildJob
     - checkout
     - add_ssh_keys
     - restore_cache:
-        key: buildscript-{{ checksum "build.gradle" }}
+        key: buildscript-{{ checksum "build.gradle" }}-v2
     - restore_cache:
-        key: gradlew-{{ checksum "./gradle/wrapper/gradle-wrapper.properties" }}
+        key: gradlew-{{ checksum "./gradle/wrapper/gradle-wrapper.properties" }}-v2
+    - restore_cache:
+        key: dependencies-{{ checksum "testapp/build.gradle" }}-{{ checksum "sdk/build.gradle" }}-v2
     - run:
         name: Run Code Analysis
         command: ./gradlew $MODULE:check -x test
@@ -33,7 +35,6 @@ build-job: &buildJob
         command: |
           ./gradlew $MODULE:testReleaseUnitTest
           ./gradlew $MODULE:jacocoTestReleaseUnitTestReport
-          bash <(curl -s https://codecov.io/bash) -t $CODECOV_REPO_TOKEN
     - run:
         name: Run Assemble
         command: ./gradlew $MODULE:assembleRelease
@@ -41,16 +42,16 @@ build-job: &buildJob
     - save_cache:
         paths:
           - ~/.gradle
-        key: buildscript-{{ checksum "build.gradle" }}
+        key: buildscript-{{ checksum "build.gradle" }}-v2
     - save_cache:
         paths:
-          - ./gradle
-        key: gradlew-{{ checksum "./gradle/wrapper/gradle-wrapper.properties" }}
+          - ./gradle/wrapper
+        key: gradlew-{{ checksum "./gradle/wrapper/gradle-wrapper.properties" }}-v2
     - save_cache:
         paths:
           - ./.gradle
           - ~/.android/build-cache/
-        key: dependencies-{{ checksum "testapp/build.gradle" }}-{{ checksum "sdk/build.gradle" }}
+        key: dependencies-{{ checksum "testapp/build.gradle" }}-{{ checksum "sdk/build.gradle" }}-v2
 ##
 # We define a job for deploying. This job will be in charge of running:
 # - Run deploy of a lib as release
