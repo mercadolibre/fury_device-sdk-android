@@ -18,7 +18,7 @@ For more details about this, visit the [developers guide](https://developers.mer
 
 Add this line to your app's `build.gradle` inside the `dependencies` section:
 ```java
-implementation 'com.mercadolibre.android.device:sdk:1.0.0'
+implementation 'com.mercadolibre.android.device:sdk:2.0.0'
 ```
 
 ### Local deployment
@@ -29,19 +29,28 @@ With this command you can generate a local version for testing:
 
 ## 🐒 How to use?
 
-Only **3** steps needed to obtain the device fingerprint information:
+Only **4** steps needed to obtain the device fingerprint information:
 
-1) Import into your project
+1) Add the following repository to your proyect `build.gradle`
+```
+repositories {
+        maven {
+            url "https://artifacts.mercadolibre.com/repository/android-releases"
+        }
+    }
+```
+
+2) Import into your project
 ```java
 import com.mercadolibre.android.device.sdk.DeviceSDK;
 ```
 
-2) Initialize the sdk in your `MainApplication` doing the following:
+3) Initialize the sdk in your `MainApplication` doing the following:
 ```java
 DeviceSDK.getInstance().execute(this);
 ```
 
-3) In the place of your checkout, you will be able to obtain the device fingerprint information using **one** of the following options: 
+4) In the place of your checkout, you will be able to obtain the device fingerprint information using **one** of the following options:
 ```java
 Device device = DeviceSDK.getInstance().getInfo(); // Returns a Device object with the info, this class is a Serializable class.
 Map deviceMap = DeviceSDK.getInstance().getInfoAsMap(); //Returns a Map<String, Object> object
